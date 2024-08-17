@@ -7,12 +7,13 @@ import { MdOutlineDelete } from 'react-icons/md';
 import BookSingleCard from './BookSingleCard';
 
 const LeagueCard = ({ leagues }) => {
+  // console.log(leagues);
   return (
-    <div key={leagues._id} className='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
+    <div key={leagues} className='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
       {leagues.map((item) => (
-        <Link to={`/league/details/${item._id}`}>
-          <BookSingleCard key={item._id} league={item} />
-        </Link>
+        
+          <BookSingleCard key={item} league={item} />
+       
       ))}
     </div>
   );

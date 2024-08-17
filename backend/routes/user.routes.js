@@ -16,8 +16,10 @@ userRouter.post('/token', async (req, res) => {
   const token = req.body.token;
   try{
     const decoded = jwt.verify(token, process.env.jwtSecret);
-    res.status(200).send({data: decoded}); 
-    //res.json({ message: 'Token is valid' });
+
+    const user = await User.findById(decoded.id);
+    if (!user) return res.status(404).send({ message: 'user not found' });
+    return res.status(200).send(user);
   }catch(e){
     res.status(401).json({ message: 'Token is not valid' });
   }
@@ -110,7 +112,7 @@ const createToken = (id) => {
     }
   });
 
-  //get one user leagues
+  //get one user 
   userRouter.get('/:id', async (req, res) => {
     try {
       const user = await User.findById(req.params.id);

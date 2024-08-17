@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
 
-const CreateLeague = () => {
+const JoinLeague = () => {
   const [leagueName, setName] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ const CreateLeague = () => {
           userResponse = await axios.post('http://localhost:5555/users/token', { token: token });
         }
   
-        console.log(userResponse.data.name, userResponse.data._id)
+        // console.log(userResponse.data.name, userResponse.data._id)
 
         if (userResponse){
           setUser(userResponse.data);
@@ -54,7 +54,7 @@ const CreateLeague = () => {
     };
     setLoading(true);
     axios
-      .post('http://localhost:5555/leagues', {name: leagueName, user: data})
+      .post('http://localhost:5555/leagues/join', {name: leagueName, user: data})
       .then(() => {
         setLoading(false);
         console.log('league created successfully');
@@ -69,11 +69,11 @@ const CreateLeague = () => {
   return (
     <div className='p-4'>
       <BackButton />
-      <h1 className='text-3xl my-4'>Create League</h1>
+      <h1 className='text-3xl my-4'>Join League</h1>
       {loading ? <Spinner /> : ''}
       <div className='flex flex-col border-2 border-sky-400 rounded-xl w-[600px] p-4 mx-auto'>
         <div className='my-4'>
-          <label className='text-xl mr-4 text-gray-500'>League Name</label>
+          <label className='text-xl mr-4 text-gray-500'>Enter League Name</label>
           <input
             type='text'
             value={leagueName}
@@ -90,4 +90,4 @@ const CreateLeague = () => {
   );
 }
 
-export default CreateLeague
+export default JoinLeague
