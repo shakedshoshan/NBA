@@ -11,7 +11,7 @@ import Signup from './pages/Signup';
 
 const App = () => {
   return (
-    <div className='bg-sky-100 h-max mt-40'>
+    <div className='bg-[#becef0] h-max mt-40'>
     <Routes >
       <Route path='/' element={<Login />} />
       <Route path='/signup' element={<Signup />} />

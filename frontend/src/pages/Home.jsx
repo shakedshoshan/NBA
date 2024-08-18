@@ -8,12 +8,16 @@ import { MdOutlineAddBox, MdOutlineDelete } from 'react-icons/md';
 import LeagueCard from '../components/home/BooksCard';
 import Cookies from 'js-cookie';
 import getUserFromToken from "/lib/getToken.js";
+import getGames from "/lib/APIactions.js";
 
 const Home = () => {
   const [leagues, setLeagues] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showType, setShowType] = useState('table');
   const [user,setUser] = useState()
+
+  //const games = await getGames();
+  //console.log(games)
 
   
 
@@ -36,6 +40,10 @@ const Home = () => {
         }
 
         setLeagues(userResponse.data.leagues);
+
+
+        const games = await getGames();
+        console.log(games)
 
   
         setLoading(false);
